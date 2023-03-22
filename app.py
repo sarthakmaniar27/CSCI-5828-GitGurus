@@ -5,6 +5,10 @@ app.secret_key = 'AppSecretKey'
 
 user = {"username": "admin", "password": "password"}
 
+@app.route('/')
+def index():
+    return redirect('/login')
+
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
     if(request.method == 'POST'):
