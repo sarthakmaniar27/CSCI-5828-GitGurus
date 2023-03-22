@@ -10,16 +10,16 @@
     </style>
 </head>
 <body>
-    {% if error %}
-        <div id="error-message">{{ error }}</div>
-    {% endif %}
     <form action="/login" method="POST">
-        <p>Enter Username:</p>
-        <p><input type="text" name="username" placeholder=" Username"/></p>
-        <p>Enter Password:</p>
-        <p><input type="password" name="password" placeholder="Password"/></p>
+        {% if error %}
+            <div id="error-message">{{ error }}</div>
+        {% endif %}
+        <p style="text-align: center;">Enter Username:</p>
+        <p style="text-align: center;"><input type="text" name="username" placeholder=" Username"/></p>
+        <p style="text-align: center;">Enter Password:</p>
+        <p style="text-align: center;"><input type="password" name="password" placeholder="Password"/></p>
 
-        <p><input type="submit" value="submit" /></p>
+        <p style="text-align: center;"><input type="submit" value="submit" /></p>
     </form>
 </body>
 </html>
