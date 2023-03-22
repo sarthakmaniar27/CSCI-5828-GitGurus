@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     {% if error %}
-        <p style="color: red">{{ error }}</p>
+        <div id="error-message">{{ error }}</div>
     {% endif %}
     <form action="/login" method="POST">
         <p>Enter Username:</p>
