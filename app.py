@@ -15,7 +15,7 @@ def login():
             session['user'] = username
             return redirect('/dashboard')
 
-        return "<h1>Wrong username or password</h1>"   
+        return render_template("login.html", error="Invalid credentials") 
 
     return render_template("login.html")
 
@@ -24,7 +24,8 @@ def dashboard():
     if('user' in session and session['user'] == user['username']):
         return '<h1>Upcoming Project for Crime Report</h1>'
 
-    return '<h1>You are not logged in.</h1>'
+    else:
+        return redirect('/login')
 
 @app.route('/logout')
 def logout():
