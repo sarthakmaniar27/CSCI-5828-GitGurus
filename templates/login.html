@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login Page</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark and light Mode Login Form</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        input[type=text], input[type=password] {
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
-    <form action="/login" method="POST">
-        {% if error %}
-            <div id="error-message">{{ error }}</div>
-        {% endif %}
-        <p>Username</p>
-        <p><input type="text" name="username" placeholder=" Username"/></p>
-        <p>Password</p>
-        <p><input type="password" name="password" placeholder="Password"/></p>
-
-        <p><input type="submit" value="Log In" /></p>
-    </form>
+    <div class="login-box">
+        <h1>Login</h1>
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" id="login-username">
+            <input type="password" name="password" placeholder="Password" id="login-password">
+            <div class="error-message">
+                {% if error %}
+                {{ error }}
+                {% endif %}
+            </div>
+            <div class="form-actions">
+                <button type="submit" id="login-submit">Login</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
