@@ -1,22 +1,26 @@
 body {
-    background-color: #f0f0f0;
+    background-color: #121212;
+    color: #ddd;
     font-family: Arial, sans-serif;
 }
 
 form {
-    width: 25%;
-    height: 300px;
+    width: 35%;
+    height: 250px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
 form p {
     margin-bottom: 10px;
+    color: #9b59b6;
+    text-align: center;
 }
 
 form input[type="text"],
@@ -24,7 +28,12 @@ form input[type="password"] {
     width: 50%;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
+    background-color: #444;
+    color: #ddd;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
 }
 
 form input[type="submit"] {
@@ -34,6 +43,7 @@ form input[type="submit"] {
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
+    text-align: center;
 }
 
 #error-message {
