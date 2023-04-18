@@ -7,7 +7,7 @@ user = {"username": "admin", "password": "password"}
 
 @app.route('/')
 def index():
-    return redirect('/login')
+    return redirect('/register')
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -21,6 +21,17 @@ def login():
         return render_template("login.html", error="Invalid credentials") 
 
     return render_template("login.html")
+
+@app.route('/register', methods = ['POST', 'GET'])
+def register():
+    if(request.method == 'POST'):
+        name = request.form.get('name')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+        return redirect('/login')
+    return render_template('register.html')
 
 @app.route('/dashboard')
 def dashboard():
