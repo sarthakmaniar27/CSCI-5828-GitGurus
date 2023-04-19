@@ -8,7 +8,7 @@ user = {"username": "admin", "password": "password"}
 
 @app.route('/')
 def index():
-    return redirect('/register')
+    return redirect('/dashboard')
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -57,11 +57,7 @@ def register():
 
 @app.route('/dashboard')
 def dashboard():
-    if('user' in session and session['user'] == user['username']):
-        return '<h1>Upcoming Project for Crime Report</h1>'
-
-    else:
-        return redirect('/login')
+    return render_template('dashboard.html')
 
 @app.route('/logout')
 def logout():
