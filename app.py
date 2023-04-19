@@ -13,7 +13,10 @@ def index():
 def login():
     if(request.method == 'POST'):
         username = request.form.get('username')
-        password = request.form.get('password')     
+        password = request.form.get('password')
+        '''
+            Code for Searching in the database 
+        '''     
         if username == user['username'] and password == user['password']:
             session['user'] = username
             return redirect('/dashboard')
@@ -27,9 +30,12 @@ def register():
     if(request.method == 'POST'):
         name = request.form.get('name')
         email = request.form.get('email')
-        phone = request.form.get('phone')
+        username = request.form.get('username')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
+        '''
+            code to insert the information into the database
+        '''
         return redirect('/login')
     return render_template('register.html')
 
