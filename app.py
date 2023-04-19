@@ -47,6 +47,11 @@ def register():
         '''
             code to insert the information into the database
         '''
+
+        ## check if the passwords are same
+        if password != confirm_password:
+            return render_template('register.html', error="Passwords do not match")
+        
         return redirect('/login')
     return render_template('register.html')
 
