@@ -4,10 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard/title>
+    <title>Dashboard</title>
+
+    <!--- Custom CSS --->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashborad.css') }}">
 </head>
 <body>
+    <div class="grid-container">
+        <!-- Header -->
+        <header class="header"></header>
+        <!-- End Header-->
 
+        <!-- Sidebar -->
+        <aside id = "sidebar"></aside>
+        <!-- End Sidebar -->
+
+        <!-- Main Container -->
+        <main class="main-container"></main>
+        <!-- End Main Container -->
+        
+    </div>    
+
+    <!-- Custom JS -->
+    <script src="Scripts/dashborad.js"></script>
 </body>
 </html>
