@@ -15,7 +15,7 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         '''
-            Code for Searching in the database 
+            Code for Searching in the database and delete the code below
         '''     
         if username == user['username'] and password == user['password']:
             session['user'] = username
