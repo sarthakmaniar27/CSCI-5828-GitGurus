@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
+import re
 
 app = Flask(__name__)
 app.secret_key = 'AppSecretKey'     
@@ -30,7 +31,17 @@ def register():
     if(request.method == 'POST'):
         name = request.form.get('name')
         email = request.form.get('email')
+
+        # Check for valid email
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            return render_template("register.html", error="Invalid email address")
+
         username = request.form.get('username')
+
+        # Check for valid username
+        if len(username) < 8 or len(username) > 12:
+            return render_template("register.html", error="Length of username should be 8 to 12 characters")
+        
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
         '''
