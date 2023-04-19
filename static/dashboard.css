@@ -14,7 +14,7 @@
  }
 
  .header{
-    grid-area: 70px;
+    grid-area: header;
     height: 70px;
     background-color: royalblue;
  }
@@ -27,5 +27,5 @@
 
  .main-container{
     grid-area: main;
-    background-color: beige;
+    background-color: beige; 
  }
