@@ -7,7 +7,7 @@
     <title>Dashboard</title>
 
     <!--- Custom CSS --->
-    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&family=Playfair+Display&display=swap" rel="stylesheet">
@@ -15,11 +15,7 @@
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
-    <!-- ApexCharts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.39.0/apexcharts.min.js"></script>   
-    
-    <!-- Custom JS -->
-    <script src="Scripts/dashboard.js"></script>
+
 </head>
 <body>
     <div class="grid-container">
@@ -137,7 +133,7 @@
                 </div>
 
                 <div class="charts-card">
-                    <p class="chart-title">Purchase and Sales Order</p>
+                    <p class="chart-title">Products and Sales</p>
                     <div id="area-chart"></div>
                 </div>
 
@@ -152,6 +148,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.39.0/apexcharts.min.js"></script>
     
     <!-- Custom JS -->
-    <script src="Scripts/dashboard.js"></script>
+    <script src="{{ url_for('static', filename='scripts/dashboard.js') }}"></script>
+
 </body>
 </html>
