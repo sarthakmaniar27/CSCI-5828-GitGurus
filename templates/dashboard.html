@@ -47,13 +47,13 @@
 
             <ul class="sidebar-list">
                 <li class="sidebar-list-item">
-                    <span class="material-icons-outlined">dashboard</span>Dashboard
+                    <span class="material-icons-outlined">dashboard</span> Dashboard
                 </li> 
                 <li class="sidebar-list-item">
-                    <span class="material-icons-outlined"> inventory_2 </span>Products
+                    <span class="material-icons-outlined"> inventory_2 </span> Products
                 </li> 
                 <li class="sidebar-list-item">
-                    <span class="material-icons-outlined"> fact_check </span>Inventory
+                    <span class="material-icons-outlined"> fact_check </span> Inventory
                 </li> 
                 <li class="sidebar-list-item">
                     <span class="material-icons-outlined"> add_shopping_cart </span> Purchase Order
@@ -122,11 +122,29 @@
 
             </div> 
             <!-- End Main Card-->
+
+            <div class="charts">
+
+                <div class="charts-card">
+                    <p class="chart-title">Top 5 products</p>
+                    <div id="bar-chart"></div>
+                </div>
+
+                <div class="charts-card">
+                    <p class="chart-title">Purchase and Sales Order</p>
+                    <div id="area-chart"></div>
+                </div>
+
+            </div>
         </main>
         <!-- End Main Container -->
         
     </div>    
 
+    <!-- Scripts -->
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.39.0/apexcharts.min.js" integrity="sha512-jZMUAHj0E1ZO8dGoWdvwCQ/bh4sefOi6lwM5XcjnpzyTfOc409SrdZAdbvum112UT1c/SqVSPZAzksUkxVcQ8w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <!-- Custom JS -->
     <script src="Scripts/dashborad.js"></script>
 </body>
