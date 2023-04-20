@@ -56,6 +56,7 @@
 
 .sidebar-title > span{
     display: none;
+    cursor: pointer;
 }
 
 .sidebar-brand{
@@ -86,6 +87,10 @@
 
 .menu-icon{
     display: none;
+}
+
+.menu-icon:hover {
+    cursor: pointer;
 }
 
 .main-container{
@@ -199,4 +204,51 @@
     justify-content: center;
     font-size: 22px;
     font-weight: 600;
+}
+
+/* Media Queries*/
+
+/* Media Query for screens with maximum size <= 992px */
+@media screen and (max-width: 992px){
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.2fr 3fr;
+        grid-template-areas:
+            "header"
+            "main";
+    }
+
+    #sidebar {
+        display: none;
+    }
+
+    .menu-icon {
+        display: inline;
+    }
+
+    .sidebar-title > span {
+        display: inline;
+    }
+
+}
+
+/* Media Query for screens with maximum size <= 768px*/
+@media screen and (max-width: 768px) {
+    .main-card {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 0;
+    }
+
+    .charts {
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+    }
+}
+
+/* Media Query for screens with maximum size <= 576px*/
+@media screen and (max-width: 576px) {
+    .header-left {
+        display: none;
+    }
 }
