@@ -22,6 +22,24 @@ function closeSidebar(){
     }
 }
 
+// define a function to logout from dashboard
+var logout_bool = false;
+logout_bool = document.getElementById("logout")
+function logout() {
+  if (logout_bool){
+    window.location.href = "/logout";
+  }
+}
+
+var report_boolean = false
+report_boolean = document.getElementById("report")
+
+function reportCrime(){
+  if(report_boolean){
+    // open a google form containing important fields
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSeKAMrw-Dk0qmwiqdoCuxCoGMOLWSBH0rPN7T5maERFcZUVEQ/viewform')
+  }
+}
 
 // ---------- CHARTS ------------
 

@@ -56,7 +56,7 @@ def register():
         if password != confirm_password:
             return render_template('register.html', error="Passwords do not match")
         
-        return redirect('/login')
+        return redirect('/dashboard')
     return render_template('register.html')
 
 
@@ -69,7 +69,8 @@ def dashboard():
 
 @app.route('/logout')
 def logout():
-    session.pop('user')
+    if 'user' in session:
+        session.pop('user')
     return redirect('/login')
 
 
