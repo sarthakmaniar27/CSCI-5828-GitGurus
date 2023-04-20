@@ -10,6 +10,8 @@ user = {"username": "admin", "password": "password"}
 def index():
     return redirect('/dashboard')
 
+
+
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
     if(request.method == 'POST'):
@@ -25,6 +27,8 @@ def login():
         return render_template("login.html", error="Invalid credentials") 
 
     return render_template("login.html")
+
+
 
 @app.route('/register', methods = ['POST', 'GET'])
 def register():
@@ -55,14 +59,20 @@ def register():
         return redirect('/login')
     return render_template('register.html')
 
+
+
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
+
+
 
 @app.route('/logout')
 def logout():
     session.pop('user')
     return redirect('/login')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
