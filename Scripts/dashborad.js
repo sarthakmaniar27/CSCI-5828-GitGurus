@@ -19,6 +19,11 @@ function closeSidebar(){
     }
 }
 
+
+// ---------- CHARTS ------------
+
+
+// Bar chart
 var barChartOptions = {
     series: [{
     data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
@@ -26,11 +31,15 @@ var barChartOptions = {
     chart: {
     type: 'bar',
     height: 350,
+    toolbar: {
+        show:false
+    },
   },
   plotOptions: {
     bar: {
+      distributed: true,  
       borderRadius: 4,
-      horizontal: true,
+      horizontal: false,
     }
   },
   dataLabels: {
