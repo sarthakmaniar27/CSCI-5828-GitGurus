@@ -121,8 +121,9 @@ def dashboard():
 
 @app.route('/logout')
 def logout():
-    if 'user' in session:
-        session.pop('user')
+    # Remove the session variable for the user
+    if 'username' in session:
+        session.pop('username', None)
     return redirect('/login')
 
 @app.route('/about')
