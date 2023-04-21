@@ -17,7 +17,8 @@ body {
 }
 .column {
     width: 100%;
-    padding: 0.5em 0;
+    padding: 0.5em 0em;
+    padding-bottom: 0.5em;
 }
 h1 {
     width: 100%;
@@ -33,6 +34,7 @@ h1 {
     cursor: pointer;
     transition: 0.3s;
     background-color: #ffffff;
+    padding-bottom: 10px;
 }
 
 .card .img-container {

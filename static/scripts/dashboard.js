@@ -22,6 +22,12 @@ function closeSidebar(){
     }
 }
 
+// define a function to redirect to teams information page
+var aboutBtn = document.getElementById("about");
+  aboutBtn.addEventListener("click", function() {
+    window.location.href = "/about";
+  });
+
 // define a function to logout from dashboard
 var logout_bool = false;
 logout_bool = document.getElementById("logout")
