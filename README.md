@@ -14,3 +14,5 @@ Redirection to the dashboard after successful login
 ![WhatsApp Image 2023-03-22 at 10 15 14 PM](https://user-images.githubusercontent.com/78723743/227104088-241043e7-8f65-452c-8a1c-e3d4f7e9477b.jpeg)
 
 Publicly Accessible URL : https://gitgurus-fse.herokuapp.com/login
+
+Test Cases: https://github.com/CSCI-5828-Foundations-Sftware-Engr/GitGurus-Project/wiki/Test-Cases
