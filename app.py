@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 import psycopg2
 from psycopg2 import sql
+import datetime
 
 app = Flask(__name__)
 app.secret_key = 'AppSecretKey'     
@@ -14,7 +15,7 @@ conn = psycopg2.connect(
     port="5432"
 )
 
-user = {"username": "admin", "password": "password"}
+# user = {"username": "admin", "password": "password"}
 
 @app.route('/')
 def index():
@@ -36,17 +37,15 @@ def login():
         )
 
         # Fetch the result of the SELECT statement
-        instances = cur.fetchone()
+        user = cur.fetchone()
 
         # Close the cursor
         cur.close()
 
         # If the result is not None, the login was successful
-        if instances is not None:
+        if user is not None:
             # Set the session variable for the user
-            user['username'] = instances[1]
-            session['username'] = instances[1]
-            print(user)
+            session['username'] = user[1]
             # Redirect to the home page
             return redirect('/dashboard')
         else:
@@ -87,12 +86,15 @@ def register():
         # Close the cursor
         cur.close()
 
-        return redirect('/login')
+        # Set the session variable for the user
+        session['username'] = username
+
+        return '<h1>Upcoming Project for Crime Report</h1>'
     return render_template('register.html')
 
 @app.route('/dashboard')
 def dashboard():
-    if('username' in session and session['username'] == user['username']):
+    if('username' in session):
         return '<h1>Upcoming Project for Crime Report</h1>'
 
     else:
