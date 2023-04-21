@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dark and light Mode Login Form</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="login-box">
@@ -20,6 +20,7 @@
             </div>
             <div class="form-actions">
                 <button type="submit" id="login-submit">Login</button>
+                <div class="register-link">Don't have an account? <a href="{{ url_for('register') }}">Register</a></div>
             </div>
         </form>
     </div>

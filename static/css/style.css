@@ -105,3 +105,12 @@ h2 {
     text-align: center;
     width: 100%;
 }
+
+.register-link {
+  color: #63c4ff;
+  padding-top: 10px;
+}
+
+.register-link > a:hover {
+  color: #dce741;
+}
