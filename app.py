@@ -9,7 +9,7 @@ user = {"username": "admin", "password": "password"}
 @app.route('/')
 def index():
     #return render_template("about.html")
-    return redirect('/dashboard')
+    return redirect('/login')
 
 
 
