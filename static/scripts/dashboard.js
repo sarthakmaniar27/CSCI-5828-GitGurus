@@ -28,6 +28,13 @@ var aboutBtn = document.getElementById("about");
     window.location.href = "/about";
   });
 
+
+// define a function to redirect to teams information page
+var aboutBtn = document.getElementById("Dashboard");
+  aboutBtn.addEventListener("click", function() {
+    window.location.href = "/dashboard";
+  });
+
 // define a function to logout from dashboard
 var logout_bool = false;
 logout_bool = document.getElementById("logout")
