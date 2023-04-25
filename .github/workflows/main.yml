@@ -18,8 +18,6 @@ jobs:
           pip install -r requirements.txt
       - name: Start the app
         run: |
-          export FLASK_APP=app.py
-          export FLASK_ENV=production
-          flask run --host=0.0.0.0 --port=5000
-        env:
-          PORT: 'AppSecretKey'
+          pip install gunicorn
+          gunicorn -b 0.0.0.0:5000 app:app
+
