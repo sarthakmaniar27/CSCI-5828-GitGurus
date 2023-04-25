@@ -1,23 +1,33 @@
-name: CrimeDetection-app
+name: Heroku Deployment
+
 on:
   push:
     branches:
       - main
+
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python
+
+      - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      - name: Start the app
-        run: |
-          pip install gunicorn
-          gunicorn -b 0.0.0.0:5000 app:app
+          python-version: 3.x
 
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: gitgurus-fse
+          heroku_email: shanthi.lekkala@colorado.edu
+          buildpacks: python
+          addons: heroku-postgresql
+          app_dir: ./
+          procfile: Procfile
+          extra: |
+            web: gunicorn app:app
