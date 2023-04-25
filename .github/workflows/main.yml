@@ -26,4 +26,4 @@ jobs:
       - name: Start App
         run: |
           pip install gunicorn
-          gunicorn -b 0.0.0.0:$PORT app:app
+          gunicorn app:app
