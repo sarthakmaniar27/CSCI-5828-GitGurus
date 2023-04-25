@@ -28,8 +28,7 @@ var aboutBtn = document.getElementById("about");
     window.location.href = "/about";
   });
 
-
-// define a function to redirect to teams information page
+// define a function to redirect to dashboard page
 var aboutBtn = document.getElementById("Dashboard");
   aboutBtn.addEventListener("click", function() {
     window.location.href = "/dashboard";
