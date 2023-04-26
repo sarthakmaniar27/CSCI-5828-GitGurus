@@ -31,7 +31,7 @@ conn = psycopg2.connect(
 
 @app.route('/')
 def index():
-    #return render_template("about.html")
+    #return render_template("verify.html")
     return redirect('/login')
 
 @app.route('/forgot_password',methods = ["POST"])  
