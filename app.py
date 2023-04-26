@@ -59,6 +59,11 @@ def login():
 
     return render_template("login.html")
 
+@app.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    # Code for forgot password functionality goes here
+    return render_template("forgot_password.html")
+
 
 
 @app.route('/register', methods = ['POST', 'GET'])
