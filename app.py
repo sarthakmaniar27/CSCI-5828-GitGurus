@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, get_flashed_messages
 from flask_mail import *
 from random import *
 import psycopg2
@@ -31,6 +31,7 @@ conn = psycopg2.connect(
 @app.route('/')
 def index():
     #return render_template("verify.html")
+    messages = get_flashed_messages()
     return redirect('/login')
 
 @app.route('/forgot_password',methods = ["POST"])  
@@ -54,7 +55,9 @@ def validate():
     user_otp = request.form['otp']  
     if 'otp' in session and session['otp'] == int(user_otp):  
         return render_template("reset_password.html") 
-    return "<h3>failure</h3>"
+    else:
+        flash('Invalid OTP')
+        return render_template("verify.html")
 
 @app.route('/reset_password' , methods= ["POST", "GET"])
 def reset_password_request():
@@ -71,9 +74,9 @@ def reset_password_request():
 
         flash("Your Password Has been reset")
         return redirect('/login')
-    
-    return "<h1> Your Password Has not been reset</h1>"
-    pass  
+    else :
+        flash('Passwords do not match')
+        return render_template("reset_password.html")  
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
