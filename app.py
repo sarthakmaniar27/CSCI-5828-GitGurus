@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 from flask_mail import *
 from random import *
 import psycopg2
@@ -16,7 +16,6 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True  
 
 mail = Mail(app)  
-otp = randint(000000,999999)  
 
 # Define the database connection parameters
 conn = psycopg2.connect(
@@ -39,6 +38,8 @@ def verify():
     email = request.form["email"]  
       
     msg = Message('OTP',sender = 'riso2414@gmail.com', recipients = [email])  
+    otp = randint(000000,999999)
+    session['otp'] = otp  # Store the OTP in the session
     msg.body = str(otp)
     try:
         mail.send(msg)
@@ -46,13 +47,33 @@ def verify():
     except Exception as e:
         print(str(e))
         return "<h3>Something went wrong while sending the email.</h3>"  
+ 
 
 @app.route('/validate',methods=["POST"])  
 def validate():  
     user_otp = request.form['otp']  
-    if otp == int(user_otp):  
-        return "<h3>Email verified successfully</h3>"  
-    return "<h3>failure</h3>"  
+    if 'otp' in session and session['otp'] == int(user_otp):  
+        return render_template("reset_password.html") 
+    return "<h3>failure</h3>"
+
+@app.route('/reset_password' , methods= ["POST", "GET"])
+def reset_password_request():
+    email_entered = request.form.get('password')
+    confirm_email_entered = request.form.get('confirm_password')
+
+    # check wether if email enteres is same
+    if str(email_entered) == str(confirm_email_entered):
+
+        ## write the SQL Code for inserting the password for user
+        ##
+        ##
+        ## by @Shanthi
+
+        flash("Your Password Has been reset")
+        return redirect('/login')
+    
+    return "<h1> Your Password Has not been reset</h1>"
+    pass  
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
