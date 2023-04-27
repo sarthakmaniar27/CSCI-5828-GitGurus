@@ -55,9 +55,12 @@ function reportCrime(){
     window.open('https://forms.gle/Zip3XEp2X9ciMb9m6')
   }
 }
-
+var contact_bool = false
+contact_bool = document.getElementById("contact")
 function contact(){
-  window.location.href("/contacts")
+  if(contact_bool){
+    window.location.href("/contacts")
+  }
 }
 
 // ---------- CHARTS ------------
