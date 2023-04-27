@@ -37,6 +37,13 @@ var aboutBtn = document.getElementById("Dashboard");
     window.location.href = "/dashboard";
   });
 
+// define a function to redirect to crime reports page
+var reportBtn = document.getElementById("reports");
+reportBtn.addEventListener("click", function() {
+    window.location.href = "/dash";
+  });
+
+
 // define a function to logout from dashboard
 var logout_bool = false;
 logout_bool = document.getElementById("logout")

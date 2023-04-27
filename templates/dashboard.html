@@ -39,7 +39,13 @@
         <aside id = "sidebar">
             <div class="sidebar-title">
                 <div class="sidebar-brand">
+
                     <span class="material-icons-outlined"></span>
+
+                    <span class="material-icons-outlined"> </span> Crimalysis
+
+                    <span class="material-icons-outlined"></span>
+
                 </div>
                 <span class="material-icons-outlined" onclick="closeSidebar()"> close </span>
             </div>
@@ -52,7 +58,7 @@
                 <li class="sidebar-list-item" id = "report" onclick="reportCrime()">
                     <span class="material-icons-outlined"> file_upload </span> Report Crime
                 </li> 
-                <li class="sidebar-list-item">
+                <li class="sidebar-list-item" id = "reports" onclick="getReports()" >
                     <span class="material-icons-outlined"> poll </span> Reports
                 </li>
                 <li class="sidebar-list-item" id="contact" onclick="contact()">
@@ -71,7 +77,7 @@
         <!-- Main Container -->
         <main class="main-container">
             <div class="main-title">
-                <p class="font-weight-bold">Dashboard For Crime in Chicago</p>
+                <p class="font-weight-bold">Dashboard For US Crimes </p>
             </div>
 
             <!-- Main Card -->
@@ -119,6 +125,9 @@
 
             </div> 
             <!-- End Main Card-->
+            {% comment %} <iframe src="https://public.tableau.com/shared/ZKHJ9YZDQ?:display_count=y&:origin=viz_share_link&:embed=y"
+            width="500" height="500">
+            </iframe> {% endcomment %}
 
             <div class="charts">
 
