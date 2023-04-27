@@ -22,6 +22,9 @@ function closeSidebar(){
     }
 }
 
+
+
+
 // define a function to redirect to teams information page
 var aboutBtn = document.getElementById("about");
   aboutBtn.addEventListener("click", function() {
@@ -51,6 +54,10 @@ function reportCrime(){
     // open a google form containing important fields
     window.open('https://forms.gle/Zip3XEp2X9ciMb9m6')
   }
+}
+
+function contact(){
+  window.location.href("/contacts")
 }
 
 // ---------- CHARTS ------------
