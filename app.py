@@ -166,12 +166,11 @@ def create_dashapp(app):
                 dbc.CardBody(html.P(id="card-content", className="card-text"), style = {"padding": '0', 'height': '100%'}),
             ], style={'border': '2 px solid white'}),
         ], md = 3)
-    ]), html.Hr(),
-    html.P([f'''
-    This dashboard was made by Aditya, Aishwarya and Charles Suresh. ''',
-    ''' The city-crimes dataset collected as part of The Marshall Project has been used. Here is the link to the code: ''',
-    html.A('Github Link', href = "https://github.com/UBC-MDS/DSCI_532_Group13_Crime")])
-    ], style = {'max-width': '90%'})
+    ]), html.Hr()])
+    # html.P([f'''
+    # This dashboard was made by. ''',
+    # ''' The city-crimes dataset collected as part of The Marshall Project has been used. Here is the link to the code: '''])
+    # ], style = {'max-width': '90%'})
     # Registering callbacks
     @app1.callback(
         Output("card-content", "children"), [Input("card-tabs", "active_tab")]
