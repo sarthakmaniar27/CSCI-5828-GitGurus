@@ -1,2 +1,4 @@
 *.pyc
 /gitgurus
+*.csv
+config.py
