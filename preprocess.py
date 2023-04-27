@@ -12,7 +12,7 @@ crime_dict = {'Number of Crimes Committed': sum_dict, 'Crime Rate (Crimes Commit
 
 pop = data.population_engineers_hurricanes()
 
-
+# preprocessing data
 def data_filtering_geochart(state, crime, metric, year_range, data_crime):
     if year_range is not None:
         data_crime = data_crime.loc[data_crime["year"].between(year_range[0], year_range[1])]
