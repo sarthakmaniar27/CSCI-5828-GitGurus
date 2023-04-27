@@ -49,7 +49,7 @@ report_boolean = document.getElementById("report")
 function reportCrime(){
   if(report_boolean){
     // open a google form containing important fields
-    window.open('https://docs.google.com/forms/d/e/1FAIpQLSeKAMrw-Dk0qmwiqdoCuxCoGMOLWSBH0rPN7T5maERFcZUVEQ/viewform')
+    window.open('https://forms.gle/Zip3XEp2X9ciMb9m6')
   }
 }
 
