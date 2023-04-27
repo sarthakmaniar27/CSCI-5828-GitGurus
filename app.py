@@ -551,4 +551,4 @@ def about():
 #     app.run(debug=True)
 
 if __name__ == '__main__':
-    app1.run_server(dev_tools_ui=False,dev_tools_props_check=False,debug=True)
+    app1.run_server(dev_tools_ui=False,dev_tools_props_check=False,debug=True, use_debugger=True, use_reloader=True)
