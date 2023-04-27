@@ -18,13 +18,6 @@ from altair import datum
 import pandas as pd
 from preprocess import *
 import plotly.graph_objects as go
-
-alt.renderers.set_embed_options(actions=False)
-data_raw = pd.read_csv("data/raw/ucr_crime_1975_2015.csv")
-
-def data_processing(data):
-    data['state'] = data['ORI'].str[:2]
-    states = pd.read_csv('/data/raw/states.csv')
 import source.connector as ct
 import source.docreader as dr
 from source.queries import parse_input, add_crime_ids, add_geo_attr, rem_attrs, dict_match_on_crime

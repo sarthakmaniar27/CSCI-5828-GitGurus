@@ -38,8 +38,8 @@ var aboutBtn = document.getElementById("Dashboard");
   });
 
 // define a function to redirect to crime reports page
-var reportBtn = document.getElementById("reports");
-reportBtn.addEventListener("click", function() {
+var reportsBtn = document.getElementById("reports");
+reportsBtn.addEventListener("click", function() {
     window.location.href = "/dash";
   });
 
@@ -49,7 +49,12 @@ denverbtn.addEventListener("click", function() {
     window.location.href = "/denver";
   });
 
-igin/denver_crime
+var contactbtn = document.getElementById("contact");
+contactbtn.addEventListener("click", function() {
+  window.location.href = "/contacts";
+});
+
+
 
 // define a function to logout from dashboard
 var logout_bool = false;
