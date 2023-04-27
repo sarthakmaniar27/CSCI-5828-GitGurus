@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash, get_flashed_messages
 from flask_mail import *
 from random import *
 import psycopg2
@@ -393,7 +393,6 @@ def create_dashapp(app):
 # new code end
 create_dashapp(app)
 mail = Mail(app)  
-otp = randint(000000,999999)  
 
 # Define the database connection parameters
 conn = psycopg2.connect(
@@ -409,6 +408,7 @@ conn = psycopg2.connect(
 @app.route('/')
 def index():
     #return render_template("verify.html")
+    messages = get_flashed_messages()
     return redirect('/login')
 
 @app.route('/forgot_password',methods = ["POST"])  
@@ -416,6 +416,8 @@ def verify():
     email = request.form["email"]  
       
     msg = Message('OTP',sender = 'riso2414@gmail.com', recipients = [email])  
+    otp = randint(000000,999999)
+    session['otp'] = otp  # Store the OTP in the session
     msg.body = str(otp)
     try:
         mail.send(msg)
@@ -423,13 +425,35 @@ def verify():
     except Exception as e:
         print(str(e))
         return "<h3>Something went wrong while sending the email.</h3>"  
+ 
 
 @app.route('/validate',methods=["POST"])  
 def validate():  
     user_otp = request.form['otp']  
-    if otp == int(user_otp):  
-        return "<h3>Email verified successfully</h3>"  
-    return "<h3>failure</h3>"  
+    if 'otp' in session and session['otp'] == int(user_otp):  
+        return render_template("reset_password.html") 
+    else:
+        flash('Invalid OTP')
+        return render_template("verify.html")
+
+@app.route('/reset_password' , methods= ["POST", "GET"])
+def reset_password_request():
+    email_entered = request.form.get('password')
+    confirm_email_entered = request.form.get('confirm_password')
+
+    # check wether if email enteres is same
+    if str(email_entered) == str(confirm_email_entered):
+
+        ## write the SQL Code for inserting the password for user
+        ##
+        ##
+        ## by @Shanthi
+
+        flash("Your Password Has been reset")
+        return redirect('/login')
+    else :
+        flash('Passwords do not match')
+        return render_template("reset_password.html")  
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -547,8 +571,14 @@ def logout():
 def about():
     return render_template('about.html')
 
+
 # if __name__ == '__main__':
 #     app.run(debug=True)
+
+@app.route('/contacts')
+def contacts():
+    return render_template('imp_contacts.html')
+
 
 if __name__ == '__main__':
     app1.run_server(dev_tools_ui=False,dev_tools_props_check=False,debug=True, use_debugger=True, use_reloader=True)
