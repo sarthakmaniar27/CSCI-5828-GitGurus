@@ -39,7 +39,15 @@
         <aside id = "sidebar">
             <div class="sidebar-title">
                 <div class="sidebar-brand">
+
                     <span class="material-icons-outlined"></span>
+
+                    <span class="material-icons-outlined"> </span> Crimalysis
+
+                    <span class="material-icons-outlined"></span>
+
+                    <span class="material-icons-outlined"> </span> Crimalysis
+
                 </div>
                 <span class="material-icons-outlined" onclick="closeSidebar()"> close </span>
             </div>
@@ -52,12 +60,18 @@
                 <li class="sidebar-list-item" id = "report" onclick="reportCrime()">
                     <span class="material-icons-outlined"> file_upload </span> Report Crime
                 </li> 
-                <li class="sidebar-list-item">
+                <li class="sidebar-list-item" id = "reports" onclick="getReports()" >
                     <span class="material-icons-outlined"> poll </span> Reports
                 </li>
-                <li class="sidebar-list-item" id="logout" onclick="logout()">
+                <li class="sidebar-list-item" id="contact" onclick="contact()">
                     <span class="material-icons-outlined"> logout </span> Important Contacts 
                 </li>  
+
+                </li> 
+                <li class="sidebar-list-item" id = "denver" >
+                    <span class="material-icons-outlined"> poll </span>Denver Crime
+                </li> 
+
                 <li class="sidebar-list-item" id = "about">
                     <span class="material-icons-outlined"> people </span> About
                 </li> 
@@ -71,7 +85,7 @@
         <!-- Main Container -->
         <main class="main-container">
             <div class="main-title">
-                <p class="font-weight-bold">Dashboard For Crime in Chicago</p>
+                <p class="font-weight-bold">Dashboard For US Crimes </p>
             </div>
 
             <!-- Main Card -->
@@ -110,7 +124,7 @@
                 <div class="card">
                     
                     <div class="card-inner">
-                        <p class="text-primary"> Crime severity index </p>
+                        <p class="text-primary"> Crimes severity index </p>
                         <span class="material-icons-outlined text-red"> notification_important </span>
                     </div>
 
@@ -118,7 +132,12 @@
                 </div>
 
             </div> 
+       
             <!-- End Main Card-->
+            <iframe src="https://public.tableau.com/shared/ZKHJ9YZDQ?:display_count=y&:origin=viz_share_link&:embed=y"
+            width="500" height="500">
+            </iframe>
+
 
             <div class="charts">
 

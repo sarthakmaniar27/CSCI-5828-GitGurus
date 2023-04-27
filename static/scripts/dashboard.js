@@ -22,6 +22,9 @@ function closeSidebar(){
     }
 }
 
+
+
+
 // define a function to redirect to teams information page
 var aboutBtn = document.getElementById("about");
   aboutBtn.addEventListener("click", function() {
@@ -33,6 +36,20 @@ var aboutBtn = document.getElementById("Dashboard");
   aboutBtn.addEventListener("click", function() {
     window.location.href = "/dashboard";
   });
+
+// define a function to redirect to crime reports page
+var reportBtn = document.getElementById("reports");
+reportBtn.addEventListener("click", function() {
+    window.location.href = "/dash";
+  });
+
+  
+var denverbtn = document.getElementById("denver");
+denverbtn.addEventListener("click", function() {
+    window.location.href = "/denver";
+  });
+
+igin/denver_crime
 
 // define a function to logout from dashboard
 var logout_bool = false;
@@ -50,6 +67,13 @@ function reportCrime(){
   if(report_boolean){
     // open a google form containing important fields
     window.open('https://forms.gle/Zip3XEp2X9ciMb9m6')
+  }
+}
+var contact_bool = false
+contact_bool = document.getElementById("contact")
+function contact(){
+  if(contact_bool){
+    window.location.href("/contacts")
   }
 }
 
