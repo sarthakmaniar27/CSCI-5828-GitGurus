@@ -43,6 +43,13 @@ reportBtn.addEventListener("click", function() {
     window.location.href = "/dash";
   });
 
+  
+var denverbtn = document.getElementById("denver");
+denverbtn.addEventListener("click", function() {
+    window.location.href = "/denver";
+  });
+
+igin/denver_crime
 
 // define a function to logout from dashboard
 var logout_bool = false;

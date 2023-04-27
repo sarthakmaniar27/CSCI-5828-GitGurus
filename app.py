@@ -8,6 +8,8 @@ import re
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
+from dash import dcc
+from dash import html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import plotly.express as px
@@ -17,14 +19,25 @@ import pandas as pd
 from preprocess import *
 import plotly.graph_objects as go
 
-
-#new code start
 alt.renderers.set_embed_options(actions=False)
 data_raw = pd.read_csv("/Users/sarthakmaniar/Desktop/GitGurus-Project/data/raw/ucr_crime_1975_2015.csv")
 
 def data_processing(data):
     data['state'] = data['ORI'].str[:2]
     states = pd.read_csv('/Users/sarthakmaniar/Desktop/GitGurus-Project/data/raw/states.csv')
+import source.connector as ct
+import source.docreader as dr
+from source.queries import parse_input, add_crime_ids, add_geo_attr, rem_attrs, dict_match_on_crime
+from source.mapping import plot_map
+from bokeh.embed import components
+
+
+alt.renderers.set_embed_options(actions=False)
+data_raw = pd.read_csv("data/raw/ucr_crime_1975_2015.csv")
+
+def data_processing(data):
+    data['state'] = data['ORI'].str[:2]
+    states = pd.read_csv('data/raw/states.csv')
     data_with_state = pd.merge(data, states, how = 'left', left_on = 'state', right_on = 'Abbreviation')
     data_with_state = data_with_state.drop(['state', 'Abbreviation', 'url', 'source'], axis = 1)
     return data_with_state
@@ -159,7 +172,9 @@ def create_dashapp(app):
                             tab_style={"width": "50%"}, label_style={"color": "black"}),
                 ],
                 id="card-tabs",
-                card=True,
+
+                # card=True,
+                ##card=True,
                 active_tab="tab-1",
                 style={'border' : '0px', 'background-color': '#B22222', 'height':tab_height}
             ), style = {'background-color': '#B22222','textAlign': 'center', 'font-weight': 'bold', 'padding-top' : '0'}),
@@ -241,6 +256,7 @@ def create_dashapp(app):
         Input('larc_click', 'n_clicks'),
         Input('agg_click', 'n_clicks')
     )
+
     def trend_chart(state, year_range, metric, hom_click, rape_click, larc_click, agg_click):
         crime = ['Homicide', 'Rape', 'Larceny', 'Aggravated Assault']
         if hom_click % 2  != 0:
@@ -571,14 +587,59 @@ def logout():
 def about():
     return render_template('about.html')
 
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
-
 @app.route('/contacts')
 def contacts():
     return render_template('imp_contacts.html')
+
+
+@app.route('/denver', methods=['GET', 'POST'])
+def denver():
+    if request.method == 'POST':
+        form = request.form
+        formfilters, queryfilters = parse_input(form)
+        crime_db = ct.MongoConnector()
+        mongo_db = crime_db.startup_db_client()
+        crime_codes = dr.mongo_read()
+        query = { '$and': [item for item in queryfilters] }
+        #print(query)
+        # query = { '$and': [{"GEO_LAT": 39.7616457} , {"GEO_LON": -105.0241665}] }
+        # query = { 'OFFENSE_CODE': 3501, 'OFFENSE_CODE_EXTENSION': 0}
+        query_attributes = formfilters
+        query_attributes = add_crime_ids(query_attributes)
+        query_attributes = add_geo_attr(query_attributes)
+        # query_attributes = None
+        # query = { 'incident_id': 2017421909} 
+
+        query_list = crime_codes.db_find(mongo_db, 'Crime', 'Denver_Crime', query, query_attributes)
+        query_list = dict_match_on_crime(mongo_db,query_list,query_attributes)
+        
+        remove_attributes = ['OFFENSE_CODE', 'OFFENSE_CODE_EXTENSION', 'OFFENSE_TYPE_ID']
+        query_list = rem_attrs(query_list, remove_attributes)
+        #print(query_list)
+
+        if len(query_list) == 0:
+            noquery = pd.DataFrame.from_dict([{'Welcome': 'queries.  Please enter a new query.'}])
+
+            return render_template('index.html', tables = [noquery.to_html(classes="data")], titles=noquery.columns.values)
+        # crime_codes.print_records(query_list)
+        query_final = query_list
+        df = pd.DataFrame(query_list)
+        df.fillna('', inplace=True)
+        
+        map = plot_map(df, 1,1)
+        script, div = components(map)
+
+        query_final = rem_attrs(query_final, ['GEO_LON', 'GEO_LAT'])
+        df = pd.DataFrame(query_final)
+        df.fillna('', inplace=True)
+
+        try:
+            return render_template('index.html',  tables=[df.to_html(classes="data")], script=script, div=div)
+        except:
+            return render_template('index.html',  tables=[df.to_html(classes="data")])
+    else:
+        return render_template('index.html',  tables=[])
+
 
 if __name__ == '__main__':
     app1.run_server(dev_tools_ui=False,dev_tools_props_check=False,debug=True, use_debugger=True, use_reloader=True)

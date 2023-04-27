@@ -10,7 +10,7 @@ MarkupSafe==2.1.2
 psycopg2-binary==2.9.6
 Werkzeug==2.2.3
 zipp==3.15.0
-
+pymongo==4.3.3
 pandas
 gunicorn
 altair
@@ -18,3 +18,5 @@ dash==1.18.1
 dash_bootstrap_components
 plotly==4.14.3
 vega_datasets
+bokeh==3.0.3
+
