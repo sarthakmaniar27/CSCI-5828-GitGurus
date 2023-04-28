@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from pymongo import MongoClient
+import config
 
 class User():
     def __init__(self):
@@ -19,7 +20,8 @@ class MongoConnector(DBConnector):
 
     # @app.on_event("startup")
     def startup_db_client(self):
-        mongodb_client = MongoClient(self.CONNECTION_STRING)
+        #mongodb_client = MongoClient(self.CONNECTION_STRING)
+        mongodb_client = MongoClient("mongodb+srv://"+ config.username +":"+ config.password +"@cluster0.kyfkech.mongodb.net/Crime")
         print("Connected to the MongoDB database!")
         return mongodb_client
 
@@ -29,7 +31,7 @@ class MongoConnector(DBConnector):
 
 
 
-# print('hi')
-# mongo1 = MongoConnector()
-# mongo1.startup_db_client()
-# mongo1.shutdown_db_client()
+#print('hi')
+#mongo1 = MongoConnector()
+#mongo1.startup_db_client()
+#mongo1.shutdown_db_client()

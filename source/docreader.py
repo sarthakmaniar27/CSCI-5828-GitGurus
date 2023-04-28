@@ -6,7 +6,7 @@ from pprint import pprint
 
 class read_doc():
     def __init__(self) -> None:
-        #self.doc = pd.read_csv('data/crime.csv', encoding= 'ISO-8859-1').to_dict()
+        #self.doc = pd.read_csv('data/raw/crime.csv', encoding= 'ISO-8859-1').to_dict()
 
         pass
     def db_insert(self):
@@ -68,7 +68,7 @@ class mongo_read(read_doc):
 #query_attributes = ['OFFENSE_TYPE_ID', 'FIRST_OCCURRENCE_DATE', 'INCIDENT_ADDRESS', 'NEIGHBORHOOD_ID']
 # query_attributes = None
 # query = { 'incident_id': 2017421909} 
-#test=crime_codes.db_insert_csv('data/crime.csv', 'Crime', 'Denver_Crime', mongo_db)
+#test=crime_codes.db_insert_csv('data/raw/crime.csv', 'Crime', 'Denver_Crime', mongo_db)
 #test1=crime_codes.db_insert_csv('data/offense_codes.csv', 'Crime', 'Offense_Codes', mongo_db)
 #query_list = crime_codes.db_find(mongo_db, 'Crime', 'Denver_Crime', query, query_attributes)
 
