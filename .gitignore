@@ -1,5 +1,4 @@
 *.pyc
 /gitgurus
 config.py
-*.csv
 
