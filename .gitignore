@@ -1,4 +1,6 @@
 *.pyc
 /gitgurus
 config.py
+.vscode
+.DS_Store
 

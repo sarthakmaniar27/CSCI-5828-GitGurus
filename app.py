@@ -405,10 +405,10 @@ mail = Mail(app)
 
 # Define the database connection parameters
 conn = psycopg2.connect(
-    dbname="d47mo5ptdsndqo",
-    user="uxxmtbozmyqsct",
-    password="af63b7f71c902462a550ce8b641650871ce967720c1cc371bb048674c6a38884",
-    host="ec2-3-217-146-37.compute-1.amazonaws.com",
+    dbname="d4g92hga4iubb3",
+    user="puzufxnrdtqfop",
+    password="a6f9100f7beb20a6e54a37a97b372a53b15e120f500409c798ef6d7d0a6fbb4f",
+    host="ec2-107-21-67-46.compute-1.amazonaws.com",
     port="5432"
 )
 
@@ -538,8 +538,8 @@ def register():
 
         # Use the cursor to execute the INSERT statement
         cur.execute(
-            sql.SQL("INSERT INTO UserData (username, password, email, created_on) VALUES (%s, %s, %s, %s)"),
-            [username, password, email, created_on]
+            sql.SQL("INSERT INTO UserData (username, name, password, email, created_on) VALUES (%s, %s, %s, %s, %s)"),
+            [username, name, password, email, created_on]
         )
 
         # Commit the transaction
@@ -635,4 +635,4 @@ def denver():
 
 
 if __name__ == '__main__':
-    app1.run_server(dev_tools_ui=False,dev_tools_props_check=False,debug=True, use_debugger=True, use_reloader=True)
+    app.run_server(dev_tools_ui=False,dev_tools_props_check=False,debug=True, use_debugger=True, use_reloader=True)
