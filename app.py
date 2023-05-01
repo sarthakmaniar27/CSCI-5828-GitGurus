@@ -411,7 +411,7 @@ conn = psycopg2.connect(
     host="ec2-107-21-67-46.compute-1.amazonaws.com",
     port="5432"
 )
-
+print('Connected to Heroku DB')
 # user = {"username": "admin", "password": "password"}
 
 @app.route('/')
@@ -635,4 +635,8 @@ def denver():
 
 
 if __name__ == '__main__':
-    app.run_server(dev_tools_ui=False,dev_tools_props_check=False,debug=True, use_debugger=True, use_reloader=True)
+    app.run(
+        host='0.0.0.0',  # Set the host to 0.0.0.0 to allow external connections
+        port=8080,  # Set the port to 8050 (or any other desired port)
+        debug=True
+    )
