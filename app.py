@@ -409,7 +409,6 @@ conn = psycopg2.connect(
     host=config.host,
     port=config.port
 )
-
 # user = {"username": "admin", "password": "password"}
 
 @app.route('/')
@@ -536,8 +535,8 @@ def register():
 
         # Use the cursor to execute the INSERT statement
         cur.execute(
-            sql.SQL("INSERT INTO UserData (username, password, email, created_on) VALUES (%s, %s, %s, %s)"),
-            [username, password, email, created_on]
+            sql.SQL("INSERT INTO UserData (username, name, password, email, created_on) VALUES (%s, %s, %s, %s, %s)"),
+            [username, name, password, email, created_on]
         )
 
         # Commit the transaction
@@ -633,4 +632,8 @@ def denver():
 
 
 if __name__ == '__main__':
-    app1.run_server(dev_tools_ui=False,dev_tools_props_check=False,debug=True, use_debugger=True, use_reloader=True)
+    app.run(
+        host='0.0.0.0',  # Set the host to 0.0.0.0 to allow external connections
+        port=8080,  # Set the port to 8050 (or any other desired port)
+        debug=True
+    )
