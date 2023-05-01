@@ -14,16 +14,14 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import plotly.express as px
 import altair as alt
-from altair import datum
 import pandas as pd
 from preprocess import *
-import plotly.graph_objects as go
 import source.connector as ct
 import source.docreader as dr
 from source.queries import parse_input, add_crime_ids, add_geo_attr, rem_attrs, dict_match_on_crime
 from source.mapping import plot_map
 from bokeh.embed import components
-
+import config
 
 alt.renderers.set_embed_options(actions=False)
 data_raw = pd.read_csv("data/raw/ucr_crime_1975_2015.csv")
@@ -57,8 +55,8 @@ app = Flask(__name__)
 app.secret_key = 'AppSecretKey'
 app.config["MAIL_SERVER"]='smtp.gmail.com'  
 app.config["MAIL_PORT"] = 465     
-app.config["MAIL_USERNAME"] = '7rishi20ss@gmail.com'  
-app.config['MAIL_PASSWORD'] = 'skrplfr20'  
+app.config["MAIL_USERNAME"] = config.mail_username 
+app.config['MAIL_PASSWORD'] = config.mail_password
 app.config['MAIL_USE_TLS'] = False  
 app.config['MAIL_USE_SSL'] = True  
 
@@ -405,11 +403,11 @@ mail = Mail(app)
 
 # Define the database connection parameters
 conn = psycopg2.connect(
-    dbname="d47mo5ptdsndqo",
-    user="uxxmtbozmyqsct",
-    password="af63b7f71c902462a550ce8b641650871ce967720c1cc371bb048674c6a38884",
-    host="ec2-3-217-146-37.compute-1.amazonaws.com",
-    port="5432"
+    dbname=config.db_name,
+    user=config.user,
+    password=config.db_password,
+    host=config.host,
+    port=config.port
 )
 
 # user = {"username": "admin", "password": "password"}

@@ -1,7 +1,4 @@
-import pandas as pd
-import source.connector as ct
 from source.queries import ret_dict, query_parser
-from source.dateparser import date_sorter
 from pprint import pprint
 
 class read_doc():
@@ -17,28 +14,28 @@ class mongo_read(read_doc):
     def __init__(self) -> None:
         super().__init__()
 
-    def csv_to_json(self, filename):
-        data = pd.read_csv(filename)
-        return data.to_dict()
+    # def csv_to_json(self, filename):
+    #     data = pd.read_csv(filename)
+    #     return data.to_dict()
 
-    def print_records(self, query_results):
-        for i, record in enumerate(query_list):
-            print(f'Record number: {i}')
-            pprint(record)
-            print('\n')
-        df = pd.DataFrame.from_dict(query_results)
-        print(df)
+    # def print_records(self, query_results):
+    #     for i, record in enumerate(query_list):
+    #         print(f'Record number: {i}')
+    #         pprint(record)
+    #         print('\n')
+    #     df = pd.DataFrame.from_dict(query_results)
+    #     print(df)
 
-    def db_insert_csv(self, filepath, dbname, colname, mongo_db):
-        datadict = pd.read_csv(filepath, encoding= 'ISO-8859-1').to_dict()
-        header = [header for header in datadict]
-        db = mongo_db[dbname]
-        col = db[colname]
-        for i in datadict[header[0]]:
-            row = {}
-            for j in header:
-                row[j] = datadict[j][i] ##{'Incident_number': 2134556}
-            col.insert_one(row)
+    # def db_insert_csv(self, filepath, dbname, colname, mongo_db):
+    #     datadict = pd.read_csv(filepath, encoding= 'ISO-8859-1').to_dict()
+    #     header = [header for header in datadict]
+    #     db = mongo_db[dbname]
+    #     col = db[colname]
+    #     for i in datadict[header[0]]:
+    #         row = {}
+    #         for j in header:
+    #             row[j] = datadict[j][i] ##{'Incident_number': 2134556}
+    #         col.insert_one(row)
 
     def db_find(self, mongo_connect, dbname, colname, query, returnfields = None):
         return_dict = ret_dict(returnfields)

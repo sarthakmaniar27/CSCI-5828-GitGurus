@@ -1,5 +1,4 @@
-import source.connector as ct
-from source. dateparser import date_sorter
+from source.dateparser import date_sorter
 
 def parse_input(form):
         headers = { 'fid': "_id",
@@ -55,28 +54,28 @@ def parse_input(form):
                     queryfilters.append({queryterms[item]: form[item]})
         return formfilters,queryfilters
 
-def col_join_on_crime(mongodb, col1string, col2string):
-    db = mongodb['Crime']
+# def col_join_on_crime(mongodb, col1string, col2string):
+#     db = mongodb['Crime']
     
-    return db[col2string].aggregate([
-    {
-        "$lookup": {
-            "from": col1string,
-            "localField": "OFFENSE_CODE",
-            "foreignField": "OFFENSE_CODE",
-            "as": "linked_crime"
-            }
-    },
-    {
-        "$unwind": "$linked_crime"
-    },
-    {
-        "$project": {
-            'crime_name': { '$cond': [ { '$eq': [ '$OFFENSE_TYPE_NAME', '$linked_crime.crime_name' ] }, 1, 0] } 
-            }
-    },
-    {'$match' : { 'crime_name' : 1}}
-    ])
+#     return db[col2string].aggregate([
+#     {
+#         "$lookup": {
+#             "from": col1string,
+#             "localField": "OFFENSE_CODE",
+#             "foreignField": "OFFENSE_CODE",
+#             "as": "linked_crime"
+#             }
+#     },
+#     {
+#         "$unwind": "$linked_crime"
+#     },
+#     {
+#         "$project": {
+#             'crime_name': { '$cond': [ { '$eq': [ '$OFFENSE_TYPE_NAME', '$linked_crime.crime_name' ] }, 1, 0] } 
+#             }
+#     },
+#     {'$match' : { 'crime_name' : 1}}
+#     ])
 
 def add_crime_ids(query_attributes):
     query_attributes.append('OFFENSE_CODE')
@@ -134,6 +133,6 @@ def dict_match_on_crime(mongodb, query_list, query_attributes):
 
     return query_list
 
-crime_db = ct.MongoConnector()
-mongo_db = crime_db.startup_db_client()
-print(col_join_on_crime(mongo_db,'Denver_Crime','Offense_Codes'))
+# crime_db = ct.MongoConnector()
+# mongo_db = crime_db.startup_db_client()
+# print(col_join_on_crime(mongo_db,'Denver_Crime','Offense_Codes'))

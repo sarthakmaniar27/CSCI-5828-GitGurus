@@ -1,8 +1,5 @@
-import pandas as pd
-from bokeh.io import show
 from bokeh.plotting import gmap
 from bokeh.models import GMapOptions
-from bokeh.embed import file_html
 from bokeh.models import HoverTool
 import config
 

@@ -1,4 +1,3 @@
-from abc import ABC, abstractmethod
 from pymongo import MongoClient
 import config
 
