@@ -411,7 +411,6 @@ conn = psycopg2.connect(
     host="ec2-107-21-67-46.compute-1.amazonaws.com",
     port="5432"
 )
-print('Connected to Heroku DB')
 # user = {"username": "admin", "password": "password"}
 
 @app.route('/')

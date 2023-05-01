@@ -1,5 +1,5 @@
 import pandas as pd
-import source.connector as ct
+# import source.connector as ct
 from source.queries import ret_dict, query_parser
 from source.dateparser import date_sorter
 from pprint import pprint

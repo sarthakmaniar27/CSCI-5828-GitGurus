@@ -1,4 +1,4 @@
-import source.connector as ct
+# import source.connector as ct
 from source. dateparser import date_sorter
 
 def parse_input(form):
@@ -134,6 +134,6 @@ def dict_match_on_crime(mongodb, query_list, query_attributes):
 
     return query_list
 
-crime_db = ct.MongoConnector()
-mongo_db = crime_db.startup_db_client()
-print(col_join_on_crime(mongo_db,'Denver_Crime','Offense_Codes'))
+# crime_db = ct.MongoConnector()
+# mongo_db = crime_db.startup_db_client()
+# print(col_join_on_crime(mongo_db,'Denver_Crime','Offense_Codes'))
