@@ -21,6 +21,7 @@ import source.docreader as dr
 from source.queries import parse_input, add_crime_ids, add_geo_attr, rem_attrs, dict_match_on_crime
 from source.mapping import plot_map
 from bokeh.embed import components
+import os
 # import config
 
 # Define the database connection parameters
