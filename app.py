@@ -25,11 +25,11 @@ from bokeh.embed import components
 
 # Define the database connection parameters
 conn = psycopg2.connect(
-    dbname=process.env.db_name,
-    user=process.env.user,
-    password=process.env.db_password,
-    host=process.env.host,
-    port=process.env.port
+    dbname=os.environ['db_name'],
+    user=os.environ['user'],
+    password=os.environ['db_password'],
+    host=os.environ['host'],
+    port=os.environ['port']
 )
 
 alt.renderers.set_embed_options(actions=False)
@@ -67,8 +67,8 @@ app = Flask(__name__)
 app.secret_key = 'AppSecretKey'
 app.config["MAIL_SERVER"]='smtp.gmail.com'  
 app.config["MAIL_PORT"] = 465     
-app.config["MAIL_USERNAME"] = process.env.mail_username 
-app.config['MAIL_PASSWORD'] = process.env.mail_password
+app.config["MAIL_USERNAME"] = os.environ['mail_username'] 
+app.config['MAIL_PASSWORD'] = os.environ['mail_password']
 app.config['MAIL_USE_TLS'] = False  
 app.config['MAIL_USE_SSL'] = True  
 

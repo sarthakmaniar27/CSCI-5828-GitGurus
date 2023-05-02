@@ -8,7 +8,7 @@ from bokeh.models import HoverTool
 def plot_map(df, lat, lng, zoom = 11, map_type = 'roadmap'):
     bokeh_width, bokeh_height = 1000,800
     lat, lng = 39.7392, -104.9903
-    api_key = process.env.api_key
+    api_key = os.environ['api_key']
     attributes = list(df.columns)
     attribute_list = []
     for item in attributes:
