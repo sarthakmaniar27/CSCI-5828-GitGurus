@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-import config
+# import config
 
 class User():
     def __init__(self):
@@ -20,7 +20,7 @@ class MongoConnector(DBConnector):
     # @app.on_event("startup")
     def startup_db_client(self):
         #mongodb_client = MongoClient(self.CONNECTION_STRING)
-        mongodb_client = MongoClient("mongodb+srv://"+ config.username +":"+ config.password +"@cluster0.kyfkech.mongodb.net/Crime")
+        mongodb_client = MongoClient("mongodb+srv://"+ process.env.username +":"+ process.env.password +"@cluster0.kyfkech.mongodb.net/Crime")
         print("Connected to the MongoDB database!")
         return mongodb_client
 
