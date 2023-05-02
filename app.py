@@ -21,14 +21,26 @@ import source.docreader as dr
 from source.queries import parse_input, add_crime_ids, add_geo_attr, rem_attrs, dict_match_on_crime
 from source.mapping import plot_map
 from bokeh.embed import components
-import config
+# import config
+
+# Define the database connection parameters
+conn = psycopg2.connect(
+    dbname=process.env.db_name,
+    user=process.env.user,
+    password=process.env.db_password,
+    host=process.env.host,
+    port=process.env.port
+)
 
 alt.renderers.set_embed_options(actions=False)
-data_raw = pd.read_csv("data/raw/ucr_crime_1975_2015.csv")
+query = "SELECT * FROM ucr_crime_1975_2015;"
+data_raw = pd.read_sql(query, conn)
+# data_raw = pd.read_csv("data/raw/ucr_crime_1975_2015.csv")
 
 def data_processing(data):
     data['state'] = data['ORI'].str[:2]
-    states = pd.read_csv('data/raw/states.csv')
+    query = "SELECT * FROM states;"
+    states = pd.read_sql(query, conn)
     data_with_state = pd.merge(data, states, how = 'left', left_on = 'state', right_on = 'Abbreviation')
     data_with_state = data_with_state.drop(['state', 'Abbreviation', 'url', 'source'], axis = 1)
     return data_with_state
@@ -55,8 +67,8 @@ app = Flask(__name__)
 app.secret_key = 'AppSecretKey'
 app.config["MAIL_SERVER"]='smtp.gmail.com'  
 app.config["MAIL_PORT"] = 465     
-app.config["MAIL_USERNAME"] = config.mail_username 
-app.config['MAIL_PASSWORD'] = config.mail_password
+app.config["MAIL_USERNAME"] = process.env.mail_username 
+app.config['MAIL_PASSWORD'] = process.env.mail_password
 app.config['MAIL_USE_TLS'] = False  
 app.config['MAIL_USE_SSL'] = True  
 
@@ -401,14 +413,7 @@ def create_dashapp(app):
 create_dashapp(app)
 mail = Mail(app)  
 
-# Define the database connection parameters
-conn = psycopg2.connect(
-    dbname=config.db_name,
-    user=config.user,
-    password=config.db_password,
-    host=config.host,
-    port=config.port
-)
+
 # user = {"username": "admin", "password": "password"}
 
 @app.route('/')
